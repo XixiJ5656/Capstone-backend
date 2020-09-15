@@ -7,8 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class Register {
-	
-	@NotBlank
+    @NotBlank
     @Size(min = 3, max = 20)
     private String username;
  
@@ -54,5 +53,4 @@ public class Register {
     public void setRole(Set<String> role) {
       this.role = role;
     }
-
 }
