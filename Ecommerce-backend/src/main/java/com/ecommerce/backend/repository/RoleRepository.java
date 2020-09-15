@@ -12,3 +12,4 @@ import com.ecommerce.backend.model.RoleType;
 public interface RoleRepository extends JpaRepository<Role, Long> {
 	Optional<Role> findByName(RoleType name);
 }
+
