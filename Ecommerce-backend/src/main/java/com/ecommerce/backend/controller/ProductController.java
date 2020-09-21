@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ import com.ecommerce.backend.exception.ResourceNotFoundException;
 import com.ecommerce.backend.model.Product;
 import com.ecommerce.backend.repository.ProductRepository;
 
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/api/app")
 public class ProductController {
@@ -61,12 +62,13 @@ public class ProductController {
  
         return productRepository.findById(id).map(product -> {
             product.setName(newProduct.getName());
-            product.setImage(newProduct.getImage());
-            product.setType(newProduct.getType());
+            product.setInventory(newProduct.getInventory());
             product.setType(newProduct.getType());
             product.setPrice(newProduct.getPrice());
             product.setSize(newProduct.getSize());
             product.setColor(newProduct.getColor());
+            product.setDescription(newProduct.getDescription());
+            product.setImage(newProduct.getImage());
             return productRepository.save(product);
         }).orElseGet(() -> {
             newProduct.setId(id);
@@ -78,7 +80,7 @@ public class ProductController {
     // DELETE ALL PRODUCTS
        
     @DeleteMapping("/products")
-    void deleteProduct() {
+    public void deleteProduct() {
         productRepository.deleteAll();
     }
        
@@ -87,7 +89,7 @@ public class ProductController {
     // DELETE PRODUCT BY ID
     
     @DeleteMapping("/products/{id}")
-    void deleteProductById(@PathVariable Long id) {
+    public void deleteProductById(@PathVariable Long id) {
         productRepository.deleteById(id);
     }
     

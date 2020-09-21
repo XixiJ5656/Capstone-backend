@@ -1,8 +1,8 @@
-package com.ecommerce.backend.jwtpayload;
+package com.ecommerce.backend.model;
 
 import javax.validation.constraints.NotBlank;
 
-public class Signin {
+public class SigninForm {
 	@NotBlank
 	private String username;
 

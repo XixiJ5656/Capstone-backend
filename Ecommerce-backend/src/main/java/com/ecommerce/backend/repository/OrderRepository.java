@@ -3,10 +3,12 @@ package com.ecommerce.backend.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ecommerce.backend.model.Product;
+import com.ecommerce.backend.model.Order;
+
+
 
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long>{
+public interface OrderRepository extends JpaRepository <Order,Long>{
 
 }
