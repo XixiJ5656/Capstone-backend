@@ -103,7 +103,7 @@ public class OrderController {
 	       
 	       
 	   
-	    // DELETE PRODUCT BY ID
+	    // DELETE ORDER BY ID
 	    
 	    @DeleteMapping("/orders/{id}")
 	    public void deleteOrderById(@PathVariable UUID id) {
