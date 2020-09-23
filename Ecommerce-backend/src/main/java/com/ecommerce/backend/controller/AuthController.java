@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.backend.jwtpayload.JwtResponse;
 import com.ecommerce.backend.jwtpayload.MessageResponse;
+
 import com.ecommerce.backend.model.RegisterForm;
 import com.ecommerce.backend.model.Role;
 import com.ecommerce.backend.model.RoleTypes;
@@ -71,7 +72,7 @@ public class AuthController {
 												 userDetails.getEmail(), 
 												 roles));
 	}
-
+	
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterForm registerInfo) {
 		if (userRepository.existsByUsername(registerInfo.getUsername())) {
