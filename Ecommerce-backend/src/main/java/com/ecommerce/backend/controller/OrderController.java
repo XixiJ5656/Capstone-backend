@@ -1,13 +1,13 @@
 package com.ecommerce.backend.controller;
 
 import java.util.List;
-
-
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +47,7 @@ public class OrderController {
 	    // GET ORDER BY ID
 	       
 	    @GetMapping("/orders/{id}")
-	    public ResponseEntity<Order> getOrderById(@PathVariable("id") Long id)
+	    public ResponseEntity<Order> getOrderById(@PathVariable("id") UUID id)
 	    throws ResourceNotFoundException {Order order= orderRepository.findById(id)
 	          .orElseThrow(() -> new ResourceNotFoundException("Could not found order for this id :: " + id));
 	         return ResponseEntity.ok().body(order);
@@ -57,23 +57,20 @@ public class OrderController {
 	    
 	       
 	    // SAVE ORDER
-	       
+	    
+	    
 	    @PostMapping("/orders")
-	    public ResponseEntity<Order> addOrder(@RequestBody Order order) {
-	      try {
-	    	  Order _order=orderRepository.save(new Order(order.getUsername(), order.getAddress(), order.getCity(), order.getState(), order.getZipcode(), order.getCountry()));
-	    	  return new ResponseEntity<>(_order,HttpStatus.CREATED);
-	      } catch(Exception e) {
-	    	  return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-	      }
-	   	 
+	    public Order saveOrder(@Validated @RequestBody Order order) {
+	   	 return orderRepository.save(order);
 	    }    
+	      
+	       
 	      
 	    
 	    // UPDATE ORDER BY ID
 
 	    @PutMapping("/orders/{id}")
-	    Order updateOrder(@RequestBody Order newOrder, @PathVariable Long id) {
+	    Order updateOrder(@RequestBody Order newOrder, @PathVariable UUID id) {
 	 
 	        return orderRepository.findById(id).map(order -> {
 	        	
@@ -84,6 +81,9 @@ public class OrderController {
                 order.setState(newOrder.getState());
                 order.setZipcode(newOrder.getZipcode());
                 order.setCountry(newOrder.getCountry());
+	            order.setPayment(newOrder.getPayment());
+//	            order.setOrderItems(newOrder.getOrderItems());
+	            order.setDelivered(newOrder.isDelivered());
 	            
 	       
 	            return orderRepository.save(order);
@@ -106,8 +106,12 @@ public class OrderController {
 	    // DELETE PRODUCT BY ID
 	    
 	    @DeleteMapping("/orders/{id}")
-	    public void deleteOrderById(@PathVariable Long id) {
+	    public void deleteOrderById(@PathVariable UUID id) {
 	        orderRepository.deleteById(id);
 	    }
-}
 	    
+	    
+	   
+	   	
+	    
+}

@@ -23,26 +23,26 @@ public class Product {
 	@Size(max = 200)
     private String name;
     
-  
+    @NotBlank
     private int inventory;
     
     @NotBlank
     @Size(max=20)
     private String type;
  
-   
+    @NotBlank
     private float price;
     
-   
+    @NotBlank
     private ArrayList<String> size;
     
-   
+    @NotBlank
     private ArrayList<String> color;
     
     @NotBlank
     private String description;
     
-    
+    @NotBlank
     private ArrayList<String> image;
     
     
@@ -51,10 +51,11 @@ public class Product {
     }
 
 
-	public Product(@NotBlank @Size(max = 200) String name, int inventory,
-			@NotBlank @Size(max = 20) String type,  float price,  ArrayList<String> size,
-			 ArrayList<String> color, @NotBlank String description, ArrayList<String> image) {
-		super();
+	
+
+	public Product(@NotBlank @Size(max = 200) String name, @NotBlank int inventory,
+			@NotBlank @Size(max = 20) String type, @NotBlank float price, @NotBlank ArrayList<String> size,
+			@NotBlank ArrayList<String> color, @NotBlank String description, @NotBlank ArrayList<String> image) {
 		this.name = name;
 		this.inventory = inventory;
 		this.type = type;
@@ -64,6 +65,8 @@ public class Product {
 		this.description = description;
 		this.image = image;
 	}
+
+
 
 
 	public Long getId() {
