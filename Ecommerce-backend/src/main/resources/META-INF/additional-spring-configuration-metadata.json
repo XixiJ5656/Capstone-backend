@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "ecommerce.jwt.expirationTime",
+    "type": "java.lang.String",
+    "description": "A description for 'ecommerce.jwt.expirationTime'"
+  },
+  {
+    "name": "ecommerce.jwt.secretKey",
+    "type": "java.lang.String",
+    "description": "A description for 'ecommerce.jwt.secretKey'"
+  },
+  {
+    "name": "spring.datasource.testWhileIdle",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.testWhileIdle'"
+  }
+]}
