@@ -16,7 +16,7 @@ import com.ecommerce.backend.repository.UserRepository;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/app")
 public class UserController {
 
 	
